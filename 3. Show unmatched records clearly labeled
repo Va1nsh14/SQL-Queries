@@ -1,1 +1,10 @@
-
+SELECT EmpName,
+       DeptName,
+       CASE
+         WHEN Employees.DeptID IS NULL THEN 'No Employee'
+         WHEN Departments.DeptID IS NULL THEN 'No Department'
+         ELSE 'Matched'
+       END AS Status
+FROM Employees
+FULL JOIN Departments
+ON Employees.DeptID = Departments.DeptID;
