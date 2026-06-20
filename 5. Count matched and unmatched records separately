@@ -1,1 +1,16 @@
-
+SELECT
+    CASE
+        WHEN e.DeptID IS NULL THEN 'Department Only'
+        WHEN d.DeptID IS NULL THEN 'Employee Only'
+        ELSE 'Matched'
+    END AS RecordType,
+    COUNT(*) AS Total
+FROM Employees e
+FULL JOIN Departments d
+ON e.DeptID = d.DeptID
+GROUP BY
+    CASE
+        WHEN e.DeptID IS NULL THEN 'Department Only'
+        WHEN d.DeptID IS NULL THEN 'Employee Only'
+        ELSE 'Matched'
+    END;
