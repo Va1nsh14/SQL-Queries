@@ -1,1 +1,13 @@
-
+SELECT
+    COALESCE(CAST(e.DeptID AS VARCHAR),
+             CAST(d.DeptID AS VARCHAR)) AS DeptID,
+    e.EmpName,
+    d.DeptName,
+    CASE
+        WHEN e.DeptID IS NULL THEN 'Missing Employee'
+        WHEN d.DeptID IS NULL THEN 'Missing Department'
+        ELSE 'Valid Match'
+    END AS ReconciliationStatus
+FROM Employees e
+FULL JOIN Departments d
+ON e.DeptID = d.DeptID;
